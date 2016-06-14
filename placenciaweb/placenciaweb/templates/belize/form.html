@@ -1,0 +1,14 @@
+<!--
+<form action= r'/search/' method="post">
+{% csrf_token %}
+<input type="text" name="textfield">
+
+<button type="submit">Day of the week</button>
+</form>
+-->
+
+<form action="/search/" method="POST">
+    <label for="restaurants_open">Enter a day of the week: </label>
+    <input id="restaurants_open" type="text" name="restaurants_open">
+    <input type="submit" value="OK">
+</form>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<h3>Restaurants Open</h3>
+	<ul>
+		{% for restaurant in restaurants %}
+			<li>
+				<a href="{% url 'restaurant_detail' restaurant.id %}">
+					{{ restaurant.title|capfirst }}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>	
+{% endblock %}

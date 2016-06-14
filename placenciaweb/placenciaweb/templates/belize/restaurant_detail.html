@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<a href="{% url 'index' %}">Back to restaurant list</a>
+	<h3>{{ restaurant.title|capfirst }}</h3>
+	<p>{{ restaurant.title }} opens at {{ restaurant.opening_hour }}</p>
+	<p>{{ restaurant.title }} closes at {{restaurant.closing_hour }}</p>
+	<h4>About:</h4>
+	<p> {{restaurant.description}}</p>
+{% endblock %}
