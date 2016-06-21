@@ -1,6 +1,26 @@
-<form method="POST" action="/search">
+{% if results %}
+    {% for restaurant in results %}
+       {{ restaurant }}
+    {% endfor %}
+{% else %}
+    Sorry, no results for your search. Try again.
+{% endif %}
+
+<form>
+   {{ form }}
+   <input type="submit" name="Search" />
+</form>
+
+
+
+
+
+
+<!--
+<form method="POST" action="/search/">
 {% csrf_token %}
 <input type="text" name="textfield">
 
-<button type="submit">Upload text</button>
+<button type="submit">Enter a day of the week</button>
 </form>
+-->

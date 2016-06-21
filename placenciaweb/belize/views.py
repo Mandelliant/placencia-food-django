@@ -3,6 +3,9 @@ from django.http import Http404
 from django.shortcuts import HttpResponse
 from belize.models import Resto
 from django.core.exceptions import *
+#from .forms import SearchForm
+from django.db.models import Q
+
 
 '''
 def index(request):
@@ -15,20 +18,22 @@ def index(request):
 '''
 
 def index(request):
+	#form = SearchForm()
 	return render(request, 'form.html')
 
+
+
 def search(request):
-	if request.method == 'POST':
-		search_id=request.POST.get('textfield', None)
-		try:
-			available = Resto.objects.get(name = search_id)
-        	#do something with user
-			html = ("<H1>%s</H1>", available)
-			return HttpResponse(html)
-		except Resto.DoesNotExist:
-			return HttpResponse("Please try another day")  
-		else:
-			return render(request, 'belize/form.html')
+    form = SearchForm(request.GET)
+    results = []  # Set results to an empty list
+    if form.is_valid():
+       needle = form.cleaned_data['search_field'].capitalize()
+       results = Resto.objects.filter(Q(days_open__startswith='{},'.format(needle)) |
+                 Q(days_open__endswith=',{}'.format(needle)) |
+                 Q(days_open__contains=',{},'.format(needle)) |
+                 Q(days_open='{},'.format(needle)) |
+                 Q(days_open='{}'.format(needle)))
+    return render(request, 'search.html', {'results': results, 'form': form})
 
 
 def restaurant_detail(request, id):
