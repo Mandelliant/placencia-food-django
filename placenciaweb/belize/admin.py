@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import Resto
+from .models import Restaurant
 
-class RestoAdmin(admin.ModelAdmin):
+class RestaurantAdmin(admin.ModelAdmin):
 	list_display = ['title']
 
-admin.site.register(Resto, RestoAdmin)
+admin.site.register(Restaurant, RestaurantAdmin)
