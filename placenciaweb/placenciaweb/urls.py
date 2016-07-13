@@ -20,9 +20,10 @@ from belize import views
 
 
 urlpatterns = [
-	url(r'^$', views.index, name='index'),
-	url(r'^search/', views.search, name='search'),
-	url(r'^dining/', views.index, name='index'),
-	url(r'^restaurants/(?P<id>\d+)/', views.restaurant_detail, name='restaurant_detail'),
+    url(r'^belize/', include('belize.urls')),
+    url(r'^$', views.index, name='index'),
     url(r'^admin/', admin.site.urls),
+    url(r'^search/', views.search, name='search'),
+    url(r'^dining/', views.index, name='index'),
+    url(r'^restaurants/(?P<id>\d+)/', views.restaurant_detail, name='restaurant_detail'),
 ]
